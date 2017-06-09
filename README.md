@@ -1,11 +1,12 @@
-# Proof of Concept
 # REST+SOAP Services mit Spring Boot
 
-#### Integration of Apache CXF
+REST service usually are implemented by a code first approach. 
+To use a code first approach to implement a SOAP service Apache CXF should be used.
 
-Da REST Services werden mit einem Code-First-Ansatz implementiert. Daher wird auch bei der Bereitstellung von REST und SOAP Services ein Code First-Ansatz empfohlen.
+### Integration of Apache CXF
 
-Für die Implementierung wird Apache CXF empfohlen. Diese bietet eine passenden Spring Boot Starter an:
+
+Apache CXF provides a dependency:
 
 ```
 <dependency>
@@ -15,23 +16,19 @@ Für die Implementierung wird Apache CXF empfohlen. Diese bietet eine passenden 
 </dependency>
 ```
 
-
-
 ### Spring Boot Profile
 
+The following Profile
+
 - `soap` - activate the SOAP Endpoint
-- `swagger` - aktivate Swagger Endpoint and UI
+- `swagger` - activate Swagger Endpoint and UI
 
 
 ### Swagger UI
-
 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
-
 ### WSDL Endpoint
-
 [http://localhost:8080/services/](http://localhost:8080/services/)
 
 ### Literatur
-
 [http://cxf.apache.org/docs/springboot.html](http://cxf.apache.org/docs/springboot.html)

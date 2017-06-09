@@ -2,9 +2,7 @@ package io.crowdcode.spring.restsoap.dto;
 
 import java.util.Set;
 
-/**
- * Created by idueppe on 06.06.17.
- */
+
 public class StammdatenResponseDto {
 
     private RahmenvertragDto rahmenvertrag;

@@ -1,7 +1,7 @@
 package io.crowdcode.spring.restsoap.config;
 
-import io.crowdcode.spring.restsoap.controller.StammdatenServiceController;
-import io.crowdcode.spring.restsoap.ws.StammdatenSoapService;
+import io.crowdcode.spring.restsoap.controller.StammdatenController;
+import io.crowdcode.spring.restsoap.controller.StammdatenSoapController;
 import org.apache.cxf.Bus;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.jaxws.EndpointImpl;
@@ -23,10 +23,9 @@ import javax.xml.ws.Endpoint;
 public class WebServicesConfig {
 
     @Bean
-    public StammdatenSoapService stammdatenWebService(StammdatenServiceController controller) {
-        return new StammdatenSoapService(controller);
+    public StammdatenSoapController stammdatenWebService(StammdatenController controller) {
+        return new StammdatenSoapController(controller);
     }
-
 
     @Bean
     public ServletRegistrationBean wsDispatcherServlet() {
@@ -40,10 +39,9 @@ public class WebServicesConfig {
     }
 
     @Bean
-    public Endpoint stammdatenEndpoint(SpringBus springBus, StammdatenSoapService stammdatenSoapService) {
+    public Endpoint stammdatenEndpoint(SpringBus springBus, StammdatenSoapController stammdatenSoapService) {
         EndpointImpl endpoint = new EndpointImpl(springBus, stammdatenSoapService);
-        endpoint.publish("stammdatenWS");
-        endpoint.setWsdlLocation("Stammdatenservice.wsdl");
+        endpoint.publish("/stammdatenWS");
         return endpoint;
     }
 

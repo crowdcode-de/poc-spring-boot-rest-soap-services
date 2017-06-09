@@ -17,19 +17,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * Created by idueppe on 06.06.17.
- */
 @RunWith(SpringRunner.class)
-@WebMvcTest(StammdatenServiceController.class)
-public class StammdatenServiceControllerTest {
+@WebMvcTest({StammdatenRestController.class, StammdatenController.class})
+public class StammdatenRestControllerTest {
 
     @MockBean
     private RahmenvertragRepository repositoryMock;
 
     @Autowired
     private MockMvc mvc;
-
 
     @Test
     public void testGetStammdatenNotFound() throws Exception {
@@ -38,7 +34,6 @@ public class StammdatenServiceControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
-
     }
 
     @Test
@@ -52,21 +47,17 @@ public class StammdatenServiceControllerTest {
                 .andExpect(content()
                         .json("{}"))
                 .andDo(print());
-
     }
 
     @Test
     public void testPostBetriebsstaette() throws Exception {
         when(repositoryMock.findByName("JUNIT-RV")).thenReturn(buildDefaultRV("JUNIT-RV"));
+
         mvc.perform(MockMvcRequestBuilders.post("/v1/api/stammdaten/JUNIT-RV")
-                .content("{  \"gueltigBis\": \"2017-06-06T18:25:51.178Z\", \"kennung\":\"ABCDED\",\"uniqueKey\":\"537e084ec0444f23\"}")
+                .content("{ \"gueltigBis\":\"2017-06-09T15:08:23\", \"kennung\":\"ABCDED\",\"uniqueKey\":\"537e084ec0444f23\"}")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
                 .andDo(print());
     }
-
-
-
-
 }

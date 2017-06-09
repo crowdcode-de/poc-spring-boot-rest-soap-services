@@ -2,9 +2,6 @@ package io.crowdcode.spring.restsoap.dto;
 
 import java.io.Serializable;
 
-/**
- * Created by idueppe on 06.06.17.
- */
 public class RahmenvertragDto implements Serializable{
 
     private static final long serialVersionUID = -5106731168761398947L;
